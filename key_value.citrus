@@ -1,6 +1,6 @@
 
 grammar KeyValue
   rule integer
-    [0-9]+ { to_i }
+    ('-'? [0-9]+) { to_i }
   end
 end
