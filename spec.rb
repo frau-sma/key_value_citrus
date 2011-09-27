@@ -15,4 +15,10 @@ describe KeyValue do
     match.should == '-4985'
     match.value.should == -4985
   end
+
+  it 'recognises positive integers prefixed with a plus sign' do
+    match = KeyValue.parse('+100', :root => :integer)
+    match.should == '+100'
+    match.value.should == 100
+  end
 end
