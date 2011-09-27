@@ -27,4 +27,8 @@ describe KeyValue do
     match.should == '+100'
     match.value.should == 100
   end
+
+  it 'rejects integers with leading zeros' do
+    expect { KeyValue.parse('0043', :root => :integer) }.to raise_error (Citrus::ParseError)
+  end
 end
