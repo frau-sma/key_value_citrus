@@ -10,6 +10,12 @@ describe KeyValue do
     match.value.should == 27
   end
 
+  it 'recognises zero correctly' do
+    match = KeyValue.parse('0', :root => :integer)
+    match.should == '0'
+    match.value.should == 0
+  end
+
   it 'recognises negative integers correctly' do
     match = KeyValue.parse('-4985', :root => :integer)
     match.should == '-4985'
