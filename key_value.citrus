@@ -11,4 +11,8 @@ grammar KeyValue
   rule sign
     ('+' | '-')?
   end
+
+  rule string
+    str:('"' (!'"' .)+ '"') { eval str }
+  end
 end

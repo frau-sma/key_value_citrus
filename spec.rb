@@ -63,4 +63,12 @@ describe KeyValue do
       expect { KeyValue.parse('-0006.7', :root => :float) }.to raise_error (Citrus::ParseError)
     end
   end
+
+  describe 'the string rule' do
+    it 'accepts a simple double-quoted string' do
+      match = KeyValue.parse('"foobar"', :root => :string)
+      match.should == '"foobar"'
+      match.value.should == 'foobar'
+    end
+  end
 end
