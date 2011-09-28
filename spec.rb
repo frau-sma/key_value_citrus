@@ -82,5 +82,9 @@ describe KeyValue do
       match.should == '"This is a \'test\', they say."'
       match.value.should == "This is a 'test', they say."
     end
+
+    it 'rejects an empty string' do
+      expect { KeyValue.parse('""', :root => :string) }.to raise_error (Citrus::ParseError)
+    end
   end
 end
