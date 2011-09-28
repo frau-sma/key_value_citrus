@@ -40,5 +40,11 @@ describe KeyValue do
       match.should == '14.021'
       match.value.should == 14.021
     end
+
+    it 'recognises zero correctly' do
+      match = KeyValue.parse('0.0', :root => :float)
+      match.should == '0.0'
+      match.value.should == 0.0
+    end
   end
 end
