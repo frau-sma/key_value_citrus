@@ -125,4 +125,24 @@ describe KeyValue do
       expect { KeyValue.parse('5foobar', :root => :key) }.to raise_error(Citrus::ParseError)
     end
   end
+
+  describe 'the option rule' do
+    it 'accepts a pair with an integer value' do
+      match = KeyValue.parse('foo = 17', :root => :option)
+      match.should == 'foo = 17'
+      match.value.should == {:foo => 17}
+    end
+
+    it 'accepts a pair with a floating-point value' do
+      match = KeyValue.parse('bar = -421.17', :root => :option)
+      match.should == 'bar = -421.17'
+      match.value.should == {:bar => -421.17}
+    end
+
+    it 'accepts a pair with a string value' do
+      match = KeyValue.parse('baz="quux"', :root => :option)
+      match.should == 'baz="quux"'
+      match.value.should == {:baz => 'quux'}
+    end
+  end
 end
