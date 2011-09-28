@@ -58,5 +58,9 @@ describe KeyValue do
       match.should == '+5.5'
       match.value.should == 5.5
     end
+
+    it 'rejects floating-point numbers with leading zeros' do
+      expect { KeyValue.parse('-0006.7', :root => :float) }.to raise_error (Citrus::ParseError)
+    end
   end
 end

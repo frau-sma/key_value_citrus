@@ -1,11 +1,11 @@
 
 grammar KeyValue
   rule integer
-    (sign ([1-9] [0-9]+) | '0') { to_i }
+    (sign ([1-9] [0-9]*) | '0') { to_i }
   end
 
   rule float
-    (sign [0-9]+ '.' [0-9]+) { to_f }
+    (integer '.' [0-9]+) { to_f }
   end
 
   rule sign
