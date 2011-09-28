@@ -145,4 +145,12 @@ describe KeyValue do
       match.value.should == {:baz => 'quux'}
     end
   end
+
+  describe 'the option_list rule' do
+    it 'returns an empty hash on an empty input string' do
+      match = KeyValue.parse('', :root => :option_list)
+      match.should == ''
+      match.value.should == {}
+    end
+  end
 end

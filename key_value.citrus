@@ -1,6 +1,10 @@
 
 grammar KeyValue
 
+  rule option_list
+    '' { {} }
+  end
+
   rule option
     (key space? '=' space? val) { { key.value => val.value } }
   end
