@@ -70,5 +70,17 @@ describe KeyValue do
       match.should == '"foobar"'
       match.value.should == 'foobar'
     end
+
+    it 'accepts a double-quoted string containing spaces' do
+      match = KeyValue.parse('"foo bar baz quux"', :root => :string)
+      match.should == '"foo bar baz quux"'
+      match.value.should == 'foo bar baz quux'
+    end
+
+    it 'accepts a double-quoted string containing single quotes' do
+      match = KeyValue.parse('"This is a \'test\', they say."', :root => :string)
+      match.should == '"This is a \'test\', they say."'
+      match.value.should == "This is a 'test', they say."
+    end
   end
 end
