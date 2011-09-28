@@ -46,5 +46,17 @@ describe KeyValue do
       match.should == '0.0'
       match.value.should == 0.0
     end
+
+    it 'recognises negative floating-point numbers correctly' do
+      match = KeyValue.parse('-88.73', :root => :float)
+      match.should == '-88.73'
+      match.value.should == -88.73
+    end
+
+    it 'recognises positive floating-point numbers prefixed with a plus sign' do
+      match = KeyValue.parse('+5.5', :root => :float)
+      match.should == '+5.5'
+      match.value.should == 5.5
+    end
   end
 end
