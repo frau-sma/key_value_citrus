@@ -107,4 +107,22 @@ describe KeyValue do
       match.value.should == 'This is a simple test.'
     end
   end
+
+  describe 'the key rule' do
+    it 'accepts a simple identifier that only contains lower-case letters' do
+      match = KeyValue.parse('foobar', :root => :key)
+      match.should == 'foobar'
+      match.value.should == :foobar
+    end
+
+    it 'accepts a more complex identifier' do
+      match = KeyValue.parse('Foo_Bar_73A', :root => :key)
+      match.should == 'Foo_Bar_73A'
+      match.value.should == :Foo_Bar_73A
+    end
+
+    it 'rejects an identifier that starts with a digit' do
+      expect { KeyValue.parse('5foobar', :root => :key) }.to raise_error(Citrus::ParseError)
+    end
+  end
 end
