@@ -33,4 +33,12 @@ describe KeyValue do
       expect { KeyValue.parse('0043', :root => :integer) }.to raise_error (Citrus::ParseError)
     end
   end
+
+  describe 'the float rule' do
+    it 'recognises positive floating-point numbers correctly' do
+      match = KeyValue.parse('14.021', :root => :float)
+      match.should == '14.021'
+      match.value.should == 14.021
+    end
+  end
 end
