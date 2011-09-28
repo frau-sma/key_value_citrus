@@ -87,4 +87,24 @@ describe KeyValue do
       expect { KeyValue.parse('""', :root => :string) }.to raise_error (Citrus::ParseError)
     end
   end
+
+  describe 'the val rule' do
+    it 'accepts an integer' do
+      match = KeyValue.parse('-401', :root => :val)
+      match.should == '-401'
+      match.value.should == -401
+    end
+
+    it 'accepts a floating-point number' do
+      match = KeyValue.parse('0.7', :root => :val)
+      match.should == '0.7'
+      match.value.should == 0.7
+    end
+
+    it 'accepts a double-quoted string' do
+      match = KeyValue.parse('"This is a simple test."', :root => :val)
+      match.should == '"This is a simple test."'
+      match.value.should == 'This is a simple test.'
+    end
+  end
 end
